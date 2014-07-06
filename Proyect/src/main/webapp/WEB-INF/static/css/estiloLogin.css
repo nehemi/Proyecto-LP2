@@ -1,0 +1,43 @@
+body {
+	font-size: 16px;
+	margin: 0 auto;
+	text-align: center;
+	margin: 0 auto;
+	background-image:url("../img/fondoazul.png");
+	background-color: #2945e2;
+	color:#ffffff;
+}
+
+form {
+	margin: 0 auto;
+	position: relative;
+}
+
+h1 {
+	color: #d077ff;
+}
+
+input {
+	border: 1px solid #8bcffa;
+	border-radius: 5px;
+	color: #d077ff;
+	padding: 5px 10px;
+}
+
+input[type=submit] {
+	background: #d077ff;
+	color: #fefefe;
+	padding: 5px 20px;
+}
+
+#contenedorLogin {
+	background-image:url("../img/FONDOCELESTE.jpg");
+	border: 3px solid #A7C942;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px #d077ff;
+	margin: 50px auto;
+	padding: 25px;
+	width: 20em;
+	-webkit-border-radius: 10px;
+	border: 3px solid #d077ff;
+}
