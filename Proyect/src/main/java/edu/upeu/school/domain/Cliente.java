@@ -1,11 +1,15 @@
 package edu.upeu.school.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -38,7 +42,9 @@ public class Cliente implements Serializable {
 	@Column(name = "telefono")
 	private Integer telefono;
 	
-	
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Venta.class)
+//	private List<Venta> ventaClien;
+//	
 	public String getId() {
 		return id;
 	}
@@ -93,5 +99,13 @@ public class Cliente implements Serializable {
 	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
+//	public List<Venta> getVentaClien() {
+//		return ventaClien;
+//	}
+//	public void setVentaClien(List<Venta> ventaClien) {
+//		this.ventaClien = ventaClien;
+//	}
+//	
+	
 	
 }

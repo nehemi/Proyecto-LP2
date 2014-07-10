@@ -9,6 +9,7 @@
 		</c:url>
 	</c:otherwise>
 </c:choose>
+
 <form action="${urlSubmit}" method="POST" id="formulario">
 	<h1>Registro de Cliente</h1>
 	<p>

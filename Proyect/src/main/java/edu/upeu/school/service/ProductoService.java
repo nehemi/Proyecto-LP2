@@ -11,5 +11,9 @@ public interface ProductoService {
 	void guardarProducto(ProductoForm af);
 
 	ProductoForm getProductoPorId(String id);
+	
+	void removeProd(String id);
+	
+	List<ProductoForm> buscarPor( String valor) ;
 
 }

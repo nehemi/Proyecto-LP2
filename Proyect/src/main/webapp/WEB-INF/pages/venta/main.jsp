@@ -1,4 +1,5 @@
 <%@include file="/common/taglibs.jsp"%>
+
 <c:choose>
 	<c:when test="${not empty lp}">
 		<table class="tabla-cebra">
@@ -7,6 +8,16 @@
 				<td colspan="5"><a href="#"
 					onclick="upeu.cargarUrl('ventas/nuevo')">+ Nuevo</a></td>
 			</tr>
+			
+			<tr>
+			<td colspan="5">
+				
+					<form action="${urlSubmit}" method="post" id="formulario">
+					   Buscar: <input type="text" value="${p.nombre}" name="nombre"
+					placeholder="Nombre" autofocus="autofocus" required style="width: 300px; "><input type="submit" value="Buscar">
+									</form></td>
+				</tr>
+			
 			<tr>
 				<th>#</th>
 				<th>Fecha</th>
@@ -21,7 +32,7 @@
 					<td>${p.detalle}</td>
 					<td>${p.cantidad}</td>
 					<td><a href="#"
-						onclick="upeu.cargarUrl('ventas/${p.id}')">[Edit]</a></td>
+						onclick="upeu.cargarUrl('ventas/${p.id_venta}')">[Edit]</a></td>
 				</tr>
 			</c:forEach>
 		</table>

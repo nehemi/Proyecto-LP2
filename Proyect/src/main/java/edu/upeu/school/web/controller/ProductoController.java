@@ -2,6 +2,8 @@ package edu.upeu.school.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.upeu.school.service.ProductoService;
+import edu.upeu.school.web.form.ClienteForm;
 import edu.upeu.school.web.form.ProductoForm;
 
 @Controller
@@ -57,5 +60,23 @@ public class ProductoController {
 
 		return "redirect:/productos/";
 	}
+	
+	@RequestMapping(value = "/del/{id}", method = RequestMethod.GET)
+	public String EliminarProd(@PathVariable String id,
+			@ModelAttribute ClienteForm df, Model model) {
 
+		productoService.removeProd(id);
+
+		return "redirect:/productos/";
+	}
+
+	@RequestMapping(value = "/showp", method = RequestMethod.GET)
+	public String mostrarListaproduc(HttpServletRequest r, Model model) {
+
+		
+		List<ProductoForm> lista = productoService.buscarPor(r.getParameter("prod").toString());
+		model.addAttribute("lp", lista);
+
+		return "producto/main";
+	}
 }

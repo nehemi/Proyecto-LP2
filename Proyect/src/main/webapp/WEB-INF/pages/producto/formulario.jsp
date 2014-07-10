@@ -1,7 +1,7 @@
 <%@include file="/common/taglibs.jsp"%>
 <c:choose>
-	<c:when test="${not empty producto.id}">
-		<c:url value="productos/${producto.id}" var="urlSubmit">
+	<c:when test="${not empty producto.id_producto}">
+		<c:url value="productos/${producto.id_producto}" var="urlSubmit">
 		</c:url>
 	</c:when>
 	<c:otherwise>
@@ -30,8 +30,8 @@
 	<p>
 		<input type="submit" value="Guardar">&nbsp;&nbsp;&nbsp;<input
 			type="button" value="Cancelar" onclick="upeu.cargarUrl('productos/');">
-		<c:if test="${not empty producto.id}">
-			<input type="hidden" name="id" value="${producto.id}">
+		<c:if test="${not empty producto.id_producto}">
+			<input type="hidden" name="id" value="${producto.id_producto}">
 		</c:if>
 	</p>
 </form>

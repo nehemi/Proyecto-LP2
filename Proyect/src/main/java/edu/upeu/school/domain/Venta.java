@@ -1,22 +1,21 @@
 package edu.upeu.school.domain;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import edu.upeu.school.web.form.ProductoForm;
+import edu.upeu.school.web.form.VentaForm;
 
 
 @Entity
@@ -28,7 +27,7 @@ public class Venta implements Serializable {
 	@GeneratedValue(generator = "genId")
 	@GenericGenerator(name = "genId", strategy = "edu.upeu.school.util.GeneradorIDRandom")
 	@Column(name = "ID_VENTA")
-	private String id;
+	private String id_venta;
 	@Column(name = "FECHA")
 	private String fecha;
 	@Column(name = "DETALLE")
@@ -38,27 +37,32 @@ public class Venta implements Serializable {
 
 //	@ManyToOne(targetEntity=Class<Venta>, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //	@JoinTable(name = "producto_venta", joinColumns = { @JoinColumn(name = "ID_PRODUCTO", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "ID_VENTA", nullable = false, updatable = false) })
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	private Cliente cliente;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = ventaDetalle.class)
-	private List<ventaDetalle> detalles;
-	
-//	private Set<Producto> productos;
-//
-//	public Set<Producto> getProductos() {
-//		return productos;
-//	}
-//
-//	public void setProductos(Set<Producto> productos) {
-//		this.productos = productos;
-//	}
 
-	public String getId() {
-		return id;
+///////////////////////////////////////////////////////////////////////	
+//	@ManyToOne( optional = false)
+//	@JoinColumns(@JoinColumn(name = "id_producto", referencedColumnName = "id_producto"))
+//	@JoinColumn(name = "id", referencedColumnName = "id")
+//	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	
+	private Producto id_producto;
+	private Cliente id;
+
+	
+	
+	public Producto getId_producto() {
+		return id_producto;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId_producto(Producto id_producto) {
+		this.id_producto = id_producto;
+	}
+
+	public String getId_venta() {
+		return id_venta;
+	}
+
+	public void setId_venta(String id_venta) {
+		this.id_venta = id_venta;
 	}
 
 	public String getFecha() {
@@ -84,21 +88,18 @@ public class Venta implements Serializable {
 	public void setCantidad(String cantidad) {
 		this.cantidad = cantidad;
 	}
+
+	public Cliente getId() {
+		return id;
+	}
+
+	public void setId(Cliente id) {
+		this.id = id;
+	}
 	
-	public Cliente getCliente() {
-		return cliente;
-	}
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = ventaDetalle.class)
+//	private List<ventaDetalle> detalles;
+//////////////////////////////////////////////////////////////////////////////	
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public List<ventaDetalle> getDetalles() {
-		return detalles;
-	}
-
-	public void setDetalles(List<ventaDetalle> detalles) {
-		this.detalles = detalles;
-	}
 	
 }

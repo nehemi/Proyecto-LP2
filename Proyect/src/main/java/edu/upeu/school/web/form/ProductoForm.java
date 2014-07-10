@@ -1,30 +1,29 @@
 package edu.upeu.school.web.form;
 
-import java.util.List;
-
 public class ProductoForm {
 
-	private String id;
+	private String id_producto;
 	private String codigo;
 	private String descripcion;
 	private Double precio;
 	private Integer stock;
-	private List<VentaForm> ventas;
+//	private List<VentaForm> ventas;
 
-	public List<VentaForm> getVentas() {
-		return ventas;
+//	public List<VentaForm> getVentas() {
+//		return ventas;
+//	}
+//
+//	public void setVentas(List<VentaForm> ventas) {
+//		this.ventas = ventas;
+//	}
+
+	
+	public String getId_producto() {
+		return id_producto;
 	}
 
-	public void setVentas(List<VentaForm> ventas) {
-		this.ventas = ventas;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setId_producto(String id_producto) {
+		this.id_producto = id_producto;
 	}
 
 	public String getCodigo() {

@@ -1,7 +1,7 @@
 package edu.upeu.school.domain;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,7 +24,7 @@ public class Producto implements Serializable {
 	@GeneratedValue(generator = "genId")
     @GenericGenerator(name = "genId", strategy = "edu.upeu.school.util.GeneradorIDRandom")
 	@Column(name = "ID_PRODUCTO")
-	private String id;
+	private String id_producto;
 	@Column(name = "codigo")
 	private String codigo;
 	@Column(name = "descripcion")
@@ -36,27 +34,26 @@ public class Producto implements Serializable {
 	@Column(name = "stock")
 	private Integer stock;
 
-//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	@JoinTable(name = "producto_venta", joinColumns = { @JoinColumn(name = "ID_PRODUCTO", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "ID_VENTA", nullable = false, updatable = false) })
-//	private Set<Venta> ventas;
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Venta.class)
+//	private List<Venta> ventaProd;
 //
-//	public Set<Venta> getVentas() {
-//		return ventas;
+//	public List<Venta> getVentaProd() {
+//		return ventaProd;
 //	}
 //
-//	public void setVentas(Set<Venta> ventas) {
-//		this.ventas = ventas;
+//	public void setVentaProd(List<Venta> ventaProd) {
+//		this.ventaProd = ventaProd;
 //	}
-
-	public String getId() {
-		return id;
+//
+//	
+	public String getId_producto() {
+		return id_producto;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId_producto(String id_producto) {
+		this.id_producto = id_producto;
 	}
 
-	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -93,7 +90,7 @@ public class Producto implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((id_producto == null) ? 0 : id_producto.hashCode());
 		return result;
 	}
 
@@ -106,10 +103,10 @@ public class Producto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Producto other = (Producto) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (id_producto == null) {
+			if (other.id_producto != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id_producto.equals(other.id_producto))
 			return false;
 		return true;
 	}

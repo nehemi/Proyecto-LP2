@@ -11,5 +11,9 @@ public interface ClienteService {
 	void guardarCliente(ClienteForm df);
 
 	ClienteForm getClientePorId(String id);
+	
+	void removeCliente(String id);
+	
+	List<ClienteForm> buscarPor(String valor);
 
 }

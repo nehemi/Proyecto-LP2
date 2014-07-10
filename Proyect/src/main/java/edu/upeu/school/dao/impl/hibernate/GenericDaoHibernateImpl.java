@@ -121,7 +121,6 @@ public class GenericDaoHibernateImpl<T, PK extends Serializable> extends
 				.add(Restrictions.idEq(id)).uniqueResult();
 	}
 
-	@SuppressWarnings("unchecked")
 	public void DeleteSession(Class<T> typeClass) {
 		DeleteSession(typeClass);
 	}
@@ -216,4 +215,6 @@ public class GenericDaoHibernateImpl<T, PK extends Serializable> extends
 
 		return (List<T>) query.list();
 	}
+
 }
+

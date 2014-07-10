@@ -1,6 +1,8 @@
 package edu.upeu.school.dao.impl.hibernate;
 
-import org.hibernate.criterion.Restrictions;
+
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import edu.upeu.school.dao.ClienteDAO;
@@ -11,14 +13,26 @@ import edu.upeu.school.domain.Cliente;
 public class ClienteDAOHibernateImpl extends
 		GenericDaoHibernateImpl<Cliente, String> implements ClienteDAO {
 	
-//	public void eliminarCliente(String id) {
-//		Cliente a = (Cliente) getSession().createCriteria(Cliente.class)
-//				.add(Restrictions.idEq(new Long(id))).uniqueResult();
-//		for (Cliente c : a.getCliente()) {
-//			if (c.getId().toString().equals(idVenta)) {
-//				a.getVentas().remove(c);
-//			}
-//		}
-//	}
+
+	public List<Cliente> buscarPor( String valor) {
+		
+//		System.out.print("Holassssssssssssssssssssss");
+		return getSession()
+		  .createQuery("SELECT a FROM Cliente a WHERE UPPER(a.nombre) LIKE UPPER(:dato) ")
+		        .setString("dato", "%"+valor+"%").list();
+		
+	} 	
+	
+	//////////////////////////////////////////////////
+	@Override
+	public void remove(Cliente object) {
+		// TODO Auto-generated method stub
+		getSession().delete(object);
+//		getSession().flush();
+//		super.remove(object);
+	}
+	
+	
+	
 
 }

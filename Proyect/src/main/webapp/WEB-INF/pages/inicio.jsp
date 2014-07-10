@@ -18,7 +18,7 @@
 					<li onclick="upeu.cargarUrl('productos/');">Productos</li>
 					<li onclick="upeu.cargarUrl('clientes/');">Clientes</li>
 					<li onclick="upeu.cargarUrl('ventas/');">Ventas</li>
-					<li>Salir</li>
+					<li onclick="close().window;">Salir</li>
 				</ul>
 			</nav>
 			<section>

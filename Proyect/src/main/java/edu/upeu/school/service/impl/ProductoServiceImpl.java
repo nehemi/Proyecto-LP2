@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lowagie.text.pdf.PRAcroForm;
+
 import edu.upeu.school.dao.ProductoDAO;
+import edu.upeu.school.domain.Cliente;
 import edu.upeu.school.domain.Producto;
 import edu.upeu.school.service.ProductoService;
+import edu.upeu.school.web.form.ClienteForm;
 import edu.upeu.school.web.form.ProductoForm;
 
 @Service
@@ -28,7 +32,7 @@ public class ProductoServiceImpl implements ProductoService {
 
 		for (Producto p : lista) {
 			ProductoForm pf = new ProductoForm();
-			pf.setId(p.getId().toString());
+			pf.setId_producto(p.getId_producto().toString());
 			pf.setCodigo(p.getCodigo());
 			pf.setDescripcion(p.getDescripcion());
 			pf.setPrecio(p.getPrecio());
@@ -48,10 +52,10 @@ public class ProductoServiceImpl implements ProductoService {
 		producto.setStock(af.getStock());
 		producto.setCodigo(af.getCodigo());
 
-		if (StringUtils.isEmpty(af.getId())) {
+		if (StringUtils.isEmpty(af.getId_producto())) {
 			productoDAO.insert(producto);
 		} else {
-			producto.setId(af.getId());
+			producto.setId_producto(af.getId_producto());
 			productoDAO.update(producto);
 		}
 
@@ -62,7 +66,7 @@ public class ProductoServiceImpl implements ProductoService {
 		Producto producto = productoDAO.findByPK(Producto.class, id);
 
 		if (producto != null) {
-			a.setId(producto.getId().toString());
+			a.setId_producto(producto.getId_producto().toString());
 			a.setCodigo(producto.getCodigo());
 			a.setDescripcion(producto.getDescripcion());
 			a.setPrecio(producto.getPrecio());
@@ -71,5 +75,42 @@ public class ProductoServiceImpl implements ProductoService {
 
 		return a;
 	}
+	
+	@Transactional(readOnly = false)
+	public void removeProd(String id) {
+		Producto d = productoDAO.findByPK(Producto.class, id);
+
+		if (d != null) {
+			productoDAO.removeP(d);
+		} else {
+			System.out.println("no hay datos" + d);
+			
+		}
+	}
+	
+public List<ProductoForm> buscarPor( String valor) {
+		
+//		String nombre="nombre";
+		List<ProductoForm> lf = new ArrayList<ProductoForm>();
+
+		List<Producto> lista = productoDAO.buscarPor(valor);
+
+		for (Producto d : lista) {
+			ProductoForm df = new ProductoForm();
+			df.setId_producto(d.getId_producto());
+			df.setCodigo(d.getCodigo());
+			df.setDescripcion(d.getDescripcion());
+			df.setPrecio(d.getPrecio());
+			df.setStock(d.getStock());
+			
+			
+
+			lf.add(df);
+		}
+
+		return lf;
+		
+	}
+
 
 }

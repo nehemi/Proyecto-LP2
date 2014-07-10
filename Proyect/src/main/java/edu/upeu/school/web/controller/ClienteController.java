@@ -2,6 +2,8 @@ package edu.upeu.school.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,6 +60,25 @@ public class ClienteController {
 		clienteService.guardarCliente(df);
 
 		return "redirect:/clientes/";
+	}
+	
+	@RequestMapping(value = "/del/{id}", method = RequestMethod.GET)
+	public String EliminarCliente(@PathVariable String id,
+			@ModelAttribute ClienteForm df, Model model) {
+
+		clienteService.removeCliente(id);
+
+		return "redirect:/clientes/";
+	}
+	
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public String mostrarListaClientesNombre(HttpServletRequest r, Model model) {
+
+		
+		List<ClienteForm> lista = clienteService.buscarPor(r.getParameter("nombre").toString());
+		model.addAttribute("lp", lista);
+
+		return "cliente/main";
 	}
 
 }

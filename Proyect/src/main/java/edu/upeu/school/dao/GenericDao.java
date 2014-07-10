@@ -3,6 +3,7 @@ package edu.upeu.school.dao;
 import java.io.Serializable;
 import java.util.List;
 
+
 public interface GenericDao<T, PK extends Serializable> {
 
     List<T> getAll(Class<T> typeClass);
@@ -54,4 +55,6 @@ public interface GenericDao<T, PK extends Serializable> {
     public List<T> getAllOrderedRestrictionTwoBooleanEQ(Class<T> typeClass, String columnaOrden, String columnaRestriccion, String valorRestriccion, String columnaRestriccion1, Boolean valorRestriccion1);
 
     T findByTwoColumnLike(Class<T> typeClass, String columna01, String valor01, String columna02, String valor02);
+
+	
 }
